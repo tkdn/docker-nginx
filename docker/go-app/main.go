@@ -11,17 +11,13 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("served root path /"))
+		w.Write([]byte("GO-APP: served root path /"))
 	})
-	r.Get("/unreachable/path", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("unreachable path /unreachable"))
+	r.Get("/api/v1/path", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("GO-APP: /api/v1/path"))
 	})
-	r.Get("/redirected/path", func(w http.ResponseWriter, r *http.Request) {
-		name := r.URL.Query().Get("name")
-		if name == "" {
-			name = "none"
-		}
-		w.Write([]byte("redirected path /redirected/path and name parameter is " + name))
+	r.Get("/api/v1/content/path", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("GO-APP: unreachable path /api/v1/content/path"))
 	})
 	http.ListenAndServe(":8080", r)
 }
