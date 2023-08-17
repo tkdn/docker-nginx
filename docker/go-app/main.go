@@ -19,5 +19,11 @@ func main() {
 	r.Get("/api/v1/content/path", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("GO-APP: unreachable path /api/v1/content/path"))
 	})
+	r.Route("/api/v1/method/put", func(r chi.Router) {
+		r.Put("/{putID}", func(w http.ResponseWriter, r *http.Request) {
+			putID := chi.URLParam(r, "putID")
+			w.Write([]byte("GO-APP: unreachable path /api/v1/content/path/put/:id + id = " + putID))
+		})
+	})
 	http.ListenAndServe(":8080", r)
 }
