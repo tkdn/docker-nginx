@@ -16,3 +16,11 @@ services:
       default:
         aliases:
           - go-app
+  node-app:
+    build:
+      context: ./docker/node-app
+      dockerfile: Dockerfile
+    networks:
+      default:
+        aliases:
+          - node-app
