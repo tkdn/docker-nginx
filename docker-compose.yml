@@ -8,6 +8,10 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/templates:/etc/nginx/templates
+    environment:
+      GO_APP: go-app
+      NODE_APP: node-app
   go-app:
     build:
       context: ./docker/go-app/
